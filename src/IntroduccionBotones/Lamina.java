@@ -32,7 +32,11 @@ public class Lamina extends JPanel implements ActionListener {
         //Agregamos los botones
         add(botonRojo);
         add(botonAmarillo);
-
+        botonRojo.setBackground(Color.RED);
+        
+        botonAzul.setBackground(Color.BLUE);
+        botonAmarillo.setBackground(Color.YELLOW);
+        
         botonRojo.addActionListener(this);
         botonAmarillo.addActionListener(this);
         botonAzul.addActionListener(this); //Como decir al hacer click
@@ -41,7 +45,8 @@ public class Lamina extends JPanel implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) { //Este evento recive por parametro un evento de tipo Mouse 
+    public void actionPerformed(ActionEvent e) {  
+        //Este evento recive por parametro un evento de tipo Mouse 
         //getSource permite calcular el origen del evento
         Object botonPulsado=e.getSource(); //Nos devuelve la fuente
         if(botonPulsado==botonAzul){
