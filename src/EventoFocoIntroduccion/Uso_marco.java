@@ -12,8 +12,9 @@ import javax.swing.JFrame;
  * @author El Camaleon
  */
 public class Uso_marco {
-    public static void main (String args[]){
-    miMarco marco=new miMarco();
-    marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    public static void main(String args[]) {
+        miMarco marco = new miMarco();
+        marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

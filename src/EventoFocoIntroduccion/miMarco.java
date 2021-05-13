@@ -20,6 +20,6 @@ public class miMarco extends JFrame{
     setLocation(450,200);
     Lamina lamina=new Lamina();
     add(lamina);
-    lamina.setBackground(new Color(123,56,76));
+    lamina.setBackground(new Color(0,0,0));
     }
 }
