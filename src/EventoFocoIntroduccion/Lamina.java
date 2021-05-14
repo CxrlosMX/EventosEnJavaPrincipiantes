@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -32,14 +33,14 @@ public class Lamina extends JPanel {
         add(inicio);
         inicio.setBounds(170, 280, 150, 25);
         inicio.setForeground(Color.BLACK);
-        inicio.setBackground(new Color(51,153,255));
+        inicio.setBackground(new Color(51, 153, 255));
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-         File miImagen = new File("src/chueck.png"); //Creamos un objeto de tipo File el cual dentro de el tenemos que especificar la 
-           try {
+        File miImagen = new File("src/chueck.png"); //Creamos un objeto de tipo File el cual dentro de el tenemos que especificar la 
+        try {
             //ruta de nuestra imagen
             //imagen=ImageIO.read(new File("Ruta"));
             imagen = ImageIO.read(miImagen);
@@ -47,7 +48,7 @@ public class Lamina extends JPanel {
             System.out.println("La imagen no ha podido encontrarse " + ex.getMessage());
         }
         g.drawImage(imagen, 180, 50, null);
-        
+
         setLayout(null);
         cuadro1 = new JTextField();
         cuadro2 = new JTextField();
@@ -61,7 +62,7 @@ public class Lamina extends JPanel {
 
         LanzaFoco foco = new LanzaFoco();
         cuadro1.addFocusListener(foco);
-         Graphics2D g2 = (Graphics2D) g;
+        Graphics2D g2 = (Graphics2D) g;
         g2.setFont(new Font("Arial", Font.ITALIC, 50));
         g2.setColor(new Color(80, 30, 40).brighter());
         g2.drawString("CxlosMX", 70, 150);
@@ -70,7 +71,7 @@ public class Lamina extends JPanel {
     //Para crear dos cuadros de texto dentro de nuestra ventana
     JTextField cuadro1;
     JTextField cuadro2;
-      private Image imagen;
+    private Image imagen;
 
     private class LanzaFoco implements FocusListener {
 
@@ -81,8 +82,18 @@ public class Lamina extends JPanel {
 
         @Override
         public void focusLost(FocusEvent e) {
+            String email = cuadro1.getText(); //Con este metodo nos permite capturar el texto
+            boolean encontrado = false;
+            for (int i = 0; i < email.length() && !encontrado; i++) {
 
-            System.out.println("Has perdido el foco");
+                if (email.charAt(i) == '@') {
+                    encontrado = true;
+                }
+            }
+            if (!encontrado) {
+                JOptionPane.showMessageDialog(null, "Correo no valido", "Correo NO valido", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
     }
 
