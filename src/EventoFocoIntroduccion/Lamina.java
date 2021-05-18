@@ -10,11 +10,14 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -26,10 +29,12 @@ import javax.swing.JTextField;
  */
 public class Lamina extends JPanel {
 
-    JButton inicio = new JButton("INICIAR SESIÓN");
+    //JButton inicio = new JButton("INICIAR SESIÓN");
 
     public Lamina() {
+        AccionColor boton=new AccionColor("INICIAR SESIÓN");
         setLayout(null);
+        JButton inicio=new JButton(boton);
         add(inicio);
         inicio.setBounds(170, 280, 150, 25);
         inicio.setForeground(Color.BLACK);
@@ -95,6 +100,20 @@ public class Lamina extends JPanel {
             }
 
         }
+    }
+
+}
+
+class AccionColor extends AbstractAction {
+
+    public AccionColor(String nombre) {
+        putValue(Action.NAME, nombre);
+        putValue(Action.SHORT_DESCRIPTION, "Pulsa para iniciar sesión");
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        System.out.println("Boton pulsado "+getValue(Action.NAME));
     }
 
 }
