@@ -5,6 +5,7 @@
  */
 package IntroduccioneventosDeVentanas;
 
+import java.awt.Color;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JPanel;
@@ -30,6 +31,7 @@ public class M_ventana implements WindowListener {
     @Override
     public void windowClosing(WindowEvent we) {
         System.out.println("Cerrando ventana");
+       
     }
 
     @Override
