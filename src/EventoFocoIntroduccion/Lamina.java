@@ -18,10 +18,14 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -30,15 +34,25 @@ import javax.swing.JTextField;
 public class Lamina extends JPanel {
 
     //JButton inicio = new JButton("INICIAR SESIÓN");
-
     public Lamina() {
-        AccionColor boton=new AccionColor("INICIAR SESIÓN");
+        AccionColor boton = new AccionColor("INICIAR SESIÓN",Color.red);
         setLayout(null);
-        JButton inicio=new JButton(boton);
+        JButton inicio = new JButton(boton);
         add(inicio);
         inicio.setBounds(170, 280, 150, 25);
         inicio.setForeground(Color.BLACK);
         inicio.setBackground(new Color(51, 153, 255));
+        
+        //Creamos nuestro mapa de entrada
+        InputMap mapaEntrada=getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        
+        //Creamos nuestra convinacion
+        KeyStroke c=KeyStroke.getKeyStroke("ctrl A");
+        //Asignamos la combinacion de teclas al objeto
+        mapaEntrada.put(c, "fondo_rojo");
+        //Asignando la accion al objeto
+        ActionMap ac=getActionMap();
+        ac.put("fondo_rojo", boton);
     }
 
     @Override
@@ -102,18 +116,21 @@ public class Lamina extends JPanel {
         }
     }
 
-}
+    private class AccionColor extends AbstractAction {
 
-class AccionColor extends AbstractAction {
+        public AccionColor(String nombre, Color colorRojo) {
+            putValue(Action.NAME, nombre);
+            putValue(Action.SHORT_DESCRIPTION, "Pulsa para iniciar sesión");
+            putValue("Color de Fondo", colorRojo);
+        }
 
-    public AccionColor(String nombre) {
-        putValue(Action.NAME, nombre);
-        putValue(Action.SHORT_DESCRIPTION, "Pulsa para iniciar sesión");
-    }
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+           
+            setBackground(Color.red);
+            //tln("Boton pulsado "+getValue(Action.NAME));
+        }
 
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        System.out.println("Boton pulsado "+getValue(Action.NAME));
     }
 
 }
