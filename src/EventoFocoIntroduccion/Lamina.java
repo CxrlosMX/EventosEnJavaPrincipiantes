@@ -6,11 +6,13 @@
 package EventoFocoIntroduccion;
 
 import java.awt.Color;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
@@ -22,6 +24,7 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -35,24 +38,26 @@ public class Lamina extends JPanel {
 
     //JButton inicio = new JButton("INICIAR SESIÓN");
     public Lamina() {
-        AccionColor boton = new AccionColor("INICIAR SESIÓN",Color.red);
+        AccionColor boton = new AccionColor("INICIAR SESIÓN", new Color(12,45,165));
         setLayout(null);
         JButton inicio = new JButton(boton);
         add(inicio);
         inicio.setBounds(170, 280, 150, 25);
         inicio.setForeground(Color.BLACK);
         inicio.setBackground(new Color(51, 153, 255));
-        
+
         //Creamos nuestro mapa de entrada
-        InputMap mapaEntrada=getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-        
+        InputMap mapaEntrada = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+
         //Creamos nuestra convinacion
-        KeyStroke c=KeyStroke.getKeyStroke("ctrl A");
+        KeyStroke c = KeyStroke.getKeyStroke("ctrl A");
         //Asignamos la combinacion de teclas al objeto
         mapaEntrada.put(c, "fondo_rojo");
         //Asignando la accion al objeto
-        ActionMap ac=getActionMap();
+        ActionMap ac = getActionMap();
         ac.put("fondo_rojo", boton);
+         oyenteNuevo oyente=new oyenteNuevo();
+        inicio.addActionListener(oyente);
     }
 
     @Override
@@ -83,8 +88,10 @@ public class Lamina extends JPanel {
         cuadro1.addFocusListener(foco);
         Graphics2D g2 = (Graphics2D) g;
         g2.setFont(new Font("Arial", Font.ITALIC, 50));
-        g2.setColor(new Color(80, 30, 40).brighter());
+        g2.setColor(new Color(255,255,0));
         g2.drawString("CxlosMX", 70, 150);
+       
+        
 
     }
     //Para crear dos cuadros de texto dentro de nuestra ventana
@@ -126,9 +133,50 @@ public class Lamina extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-           
-            setBackground(Color.red);
+
+            setBackground(new Color(255,102,102));
             //tln("Boton pulsado "+getValue(Action.NAME));
+        }
+
+    }
+    private class oyenteNuevo implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+          ventanaEmergente marco = new  ventanaEmergente();   
+        }
+    
+    
+    }
+
+}
+
+class ventanaEmergente extends JFrame {
+
+    public ventanaEmergente() {
+        setVisible(true);
+        setTitle("INICIO DE SESIÓN");
+        setSize(500, 500);
+        setLocation(150, 200);
+        Estilo estilo = new Estilo();
+        add(estilo);
+        estilo.setBackground(new Color(51,153,255));
+
+    }
+
+    private class Estilo extends JPanel {
+
+        public Estilo() {
+
+        }
+
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g); //Invocamos el metodo desde la  clase padre para usarlo
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setFont(new Font("Arial", Font.ROMAN_BASELINE, 50));
+             g2.setColor(Color.white.brighter());
+           g2.drawString("BIENVENIDO ",100, 100);
         }
 
     }
