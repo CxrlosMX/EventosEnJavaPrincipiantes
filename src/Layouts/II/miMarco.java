@@ -27,6 +27,7 @@ public class miMarco extends JFrame{
     Lamina lamina=new Lamina();
     lamina.setBackground(new Color(34,76,98));
     add(lamina);
+   // pack(); //Con esta instancia le decimos a nuestra ventana que se adapte a nuestros componentes que tenemos en la lamina
     }
     
 }
