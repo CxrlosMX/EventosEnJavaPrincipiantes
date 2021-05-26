@@ -24,36 +24,40 @@ import javax.swing.JPanel;
  */
 public class Lamina extends JPanel {
 
+    private String ultimaOp;
+    private double resultado;
     private JPanel miLamina;
     private JButton pantalla;
     private boolean principio;
 
     public Lamina() {
-        principio=true;
+        principio = true;
         setLayout(new BorderLayout());
         pantalla = new JButton("0");
         miLamina = new JPanel();
         add(pantalla, BorderLayout.NORTH);
         pantalla.setEnabled(false);
         ActionListener insertar = new insertaNumero();
+        ActionListener op = new AccionOrden();
         ponerBoton("7", insertar);
         ponerBoton("8", insertar);
         ponerBoton("9", insertar);
-        //ponerBoton("/");
+        ponerBoton("/", op);
         ponerBoton("4", insertar);
         ponerBoton("5", insertar);
         ponerBoton("6", insertar);
-        // ponerBoton("*");
+        ponerBoton("*", op);
         ponerBoton("1", insertar);
         ponerBoton("2", insertar);
         ponerBoton("3", insertar);
-        //  ponerBoton("-");
+        ponerBoton("-", op);
         ponerBoton("0", insertar);
-      //  ponerBoton(".");
-        //  ponerBoton("=");
-        //  ponerBoton("+");
+        ponerBoton(".", op);
+        ponerBoton("=", op);
+        ponerBoton("+", op);
         miLamina.setLayout(new GridLayout(4, 4)); //Con esto indicamos que va a tener 4 filas y 4 columnas
         add(miLamina, BorderLayout.CENTER);
+        ultimaOp = "=";
     }
 
     //Crearemos un metodo para agregar botones
@@ -78,4 +82,41 @@ public class Lamina extends JPanel {
 
     }
 
+    //Crearemos una clase interna donde contendra los metodos para realizar las operaciones basicas
+    private class AccionOrden implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String operacion = e.getActionCommand();
+            //System.out.println(operacion);
+
+            calcular(Double.parseDouble(pantalla.getText())); //Con este metodo rescatamos lo que tenemos en pantalla
+            ultimaOp = operacion;
+            principio = true;
+
+        }
+
+        public void calcular(double n) {
+            if (ultimaOp.equals("+")) {
+                resultado += n;
+               // System.out.println(resultado);
+            }
+            else if(ultimaOp.equals("-")){
+            resultado-=n;
+            }
+            else if(ultimaOp.equals("*")){
+            resultado*=n;
+            }
+            else if(ultimaOp.equals("/")){
+            resultado/=n;
+            }
+            else if (ultimaOp.equals("=")) {
+                resultado = n;
+                
+              
+            }
+              pantalla.setText(""+resultado); //Con esto convertimos nuestro valor Double a String
+
+        }
+    }
 }
