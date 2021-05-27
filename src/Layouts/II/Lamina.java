@@ -88,7 +88,7 @@ public class Lamina extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             String operacion = e.getActionCommand();
-            //System.out.println(operacion);
+            System.out.println(operacion);
 
             calcular(Double.parseDouble(pantalla.getText())); //Con este metodo rescatamos lo que tenemos en pantalla
             ultimaOp = operacion;
