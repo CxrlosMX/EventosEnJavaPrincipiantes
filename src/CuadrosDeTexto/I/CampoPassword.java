@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 
-package CuadrosDeTexto;
+package CuadrosDeTexto.I;
 
-import java.awt.Color;
 import javax.swing.JFrame;
 
 /**
@@ -15,18 +14,13 @@ import javax.swing.JFrame;
  * @Git-Hub: https://github.com/CxrlosMX
  * @Phone: 953-212-97-27
  * @Email: LuisCRendon131@gmail.com
- * @Date: 26/05/2021
+ * @Date: 27/05/2021
  * 
  */
-public class MarcoTexto extends  JFrame{
-    public MarcoTexto(){
-    setVisible(true);
-    setTitle("Cuadros de Texto");
-    setSize(700,500);
-    setLocation(200,260);
-    LaminaTexto lamina=new LaminaTexto();
-    lamina.setBackground(new Color(34,67,56));
-    add(lamina);
+public class CampoPassword {
+    public static void main (String args[]){
+    MarcoPassword marco=new MarcoPassword();
+    marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 }
