@@ -44,6 +44,7 @@ public class Lamina extends JPanel {
         //Metodo si queremos que el texto sea editable en la lamina
         combo.setEditable(true);
         //Agregmos los componentes que contendra
+        //Hacemos la lista de Items que contendra nuestro combo BOX
         combo.addItem("Serif");
         combo.addItem("SansSerif");
         combo.addItem("MonoSpace");
