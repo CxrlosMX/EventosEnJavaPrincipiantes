@@ -36,34 +36,44 @@ public class Lamina extends JPanel {
         setLayout(new BorderLayout());
         //Instanciamos nuestra segunda Ventana
         lamina2 = new JPanel();
-        lamina2.setBackground(new Color(12,5,67));
+        lamina2.setBackground(new Color(12, 5, 67));
         //Inicializamos nueestro texto
         texto = new JLabel("CxrlosMX");
         texto.setFont(new Font("Serif", Font.ITALIC, 10));
         //Inicializamos nuestro componente JSPinner
-        control = new JSpinner(new SpinnerNumberModel(10, 9, 100, 5)); //(valorInicial,NumeroMinimio,Maximo,DecuantoAvanzara);
+        //  control = new JSpinner(new SpinnerNumberModel(10, 9, 100, 5)); //(valorInicial,NumeroMinimio,Maximo,DecuantoAvanzara);
         //Configuramos el tamaño de nuestro componente SPinner
+        /*
+         Clase Interna Anonia 
+         */
+        control = new JSpinner(new SpinnerNumberModel(10, 9, 100, 5)); //(valorInicial,NumeroMinimio,Maximo,DecuantoAvanzara);
         Dimension d = new Dimension(200, 20);
         control.setPreferredSize(d);
         //Creamos una instancia de nuestro evento
-        EventoTexto evento=new EventoTexto();
-        control.addChangeListener(evento);
+        // EventoTexto evento=new EventoTexto();
+        control.addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent ce) {
+                texto.setFont(new Font("Serif", Font.ITALIC, (int) control.getValue()));
+
+            }
+        });
         //Agregamos nuestro componente SPInner a nuestra segunda Lamina
         lamina2.add(control);
         //Agregamos nuestros componentes a nuestra lamina principal
         add(texto, BorderLayout.CENTER);
         //Agregamos nuestra segunda lamina a nuestra lamina principal
-        add(lamina2,BorderLayout.NORTH);
+        add(lamina2, BorderLayout.NORTH);
     }
 
     //Clase que gestionara el evento
-    private class EventoTexto implements ChangeListener {
+  /*  private class EventoTexto implements ChangeListener {
 
-        @Override
-        public void stateChanged(ChangeEvent ce) {
-            texto.setFont(new Font("Serif", Font.ITALIC, (int) control.getValue()));
-        }
+     @Override
+     public void stateChanged(ChangeEvent ce) {
+     texto.setFont(new Font("Serif", Font.ITALIC, (int) control.getValue()));
+     }
 
-    }
-
+     }*/
 }

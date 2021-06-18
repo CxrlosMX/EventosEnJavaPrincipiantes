@@ -45,8 +45,14 @@ public class Lamina extends JPanel {
         control.setPaintTicks(true); //Para que pinte las marcas
         control.setFont(new Font("Serif", Font.ITALIC, 15));
         //Creamos la instancia del evento 
-        EventoTexto evento = new EventoTexto();
-        control.addChangeListener(evento);
+        // EventoTexto evento = new EventoTexto();
+        control.addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent ce) {
+                texto.setFont(new Font("Serif", Font.ITALIC, control.getValue()));
+            }
+        });
         //Agregamos nuestro componente a nuestra segunda lamina
         lamina2.add(control);
 
@@ -56,7 +62,7 @@ public class Lamina extends JPanel {
     }
 
     //Creamos nuestra clase que gestionara nuestro evento
-    private class EventoTexto implements ChangeListener {
+   /* private class EventoTexto implements ChangeListener {
 
         @Override
         public void stateChanged(ChangeEvent ce) {
@@ -64,5 +70,5 @@ public class Lamina extends JPanel {
             // System.out.println("HOLA ESTAS USANDO EL SLIDER");
         }
 
-    }
+    }*/
 }
