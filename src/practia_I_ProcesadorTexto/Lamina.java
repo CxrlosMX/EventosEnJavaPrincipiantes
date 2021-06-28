@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -32,11 +33,15 @@ public class Lamina extends JPanel {
     private JMenu estilo, fuente, size;
     private Font letras;
     private JPanel segundaLamina;
+    private JPanel terceraLamina;
     private JTextPane areaTexto;
-
+    private JLabel texto;
     public Lamina() {
         setLayout(new BorderLayout());
         segundaLamina = new JPanel();
+        texto=new JLabel();
+        terceraLamina=new JPanel();
+        terceraLamina.add(texto);
         JMenuBar mibarra = new JMenuBar();
         //------------------------------------------  
         estilo = new JMenu("Estilo");
@@ -62,6 +67,7 @@ public class Lamina extends JPanel {
         mibarra.add(size);
         segundaLamina.add(mibarra);
         add(segundaLamina, BorderLayout.NORTH);
+        add(terceraLamina,BorderLayout.SOUTH);
         add(areaTexto, BorderLayout.CENTER);
     }
 
@@ -95,6 +101,19 @@ public class Lamina extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            letras = areaTexto.getFont();
+            if (menu.equalsIgnoreCase("Aero") || menu.equalsIgnoreCase("Serif") || menu.equalsIgnoreCase("Agency FB")) {
+                estilo_letra = letras.getStyle();
+                tamagno = letras.getSize();
+            } else if (menu.equalsIgnoreCase("Negrita") || menu.equalsIgnoreCase("Cursiva")) {
+                tipo_texto = letras.getFontName();
+                tamagno = letras.getSize();
+            } else if (menu.equalsIgnoreCase("12") || menu.equalsIgnoreCase("16") || menu.equalsIgnoreCase("20") || menu.equalsIgnoreCase("24")) {
+                tipo_texto = letras.getFontName();
+                estilo_letra = letras.getStyle();
+            }
+            texto.setText("Fuente: "+tipo_texto+" Estilo: "+estilo_letra+" Tamaño:"+tamagno);
+           // System.out.println("Fuente: "+tipo_texto+" Estilo: "+estilo_letra+" Tamaño:"+tamagno);
             areaTexto.setFont(new Font(tipo_texto, estilo_letra, tamagno));
         }
 
