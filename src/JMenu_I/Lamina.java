@@ -5,10 +5,12 @@
  */
 package JMenu_I;
 
+import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -40,9 +42,11 @@ public class Lamina extends JPanel {
         guardar = new JMenuItem("Guardar");
         guardarComo = new JMenuItem("Guardar Como");
         //Elementos para el componente Edicion
-        cortar = new JMenuItem("Cortar");
-        copiar = new JMenuItem("Copiar");
-        pegar = new JMenuItem("Pegar");
+        cortar = new JMenuItem("Cortar",new ImageIcon("src/cortar.gif")); //Dentro de la clase Menu Item existe un constructor que sirve para poner un icono al menu
+        copiar = new JMenuItem("Copiar",new ImageIcon("src/copiar.gif"));
+        //¿Como cambio la Ubicacion de la imagen?
+        //copiar.setHorizontalTextPosition(SwingConstants.LEFT); //
+        pegar = new JMenuItem("Pegar",new ImageIcon("src/pegar.gif"));
         //Elementos para el subMenu
         op1 = new JMenuItem("Opción 1");
         op2 = new JMenuItem("Opción 2");

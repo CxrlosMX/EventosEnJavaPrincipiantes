@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package practia_I_ProcesadorTexto;
+package practia_II_ProcesadorTexto;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -15,6 +15,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.text.StyledEditorKit;
 
 /**
  *
@@ -36,11 +37,12 @@ public class Lamina extends JPanel {
     private JPanel terceraLamina;
     private JTextPane areaTexto;
     private JLabel texto;
+
     public Lamina() {
         setLayout(new BorderLayout());
         segundaLamina = new JPanel();
-        texto=new JLabel();
-        terceraLamina=new JPanel();
+        texto = new JLabel();
+        terceraLamina = new JPanel();
         terceraLamina.add(texto);
         JMenuBar mibarra = new JMenuBar();
         //------------------------------------------  
@@ -67,7 +69,7 @@ public class Lamina extends JPanel {
         mibarra.add(size);
         segundaLamina.add(mibarra);
         add(segundaLamina, BorderLayout.NORTH);
-        add(terceraLamina,BorderLayout.SOUTH);
+        add(terceraLamina, BorderLayout.SOUTH);
         add(areaTexto, BorderLayout.CENTER);
     }
 
@@ -76,50 +78,61 @@ public class Lamina extends JPanel {
         JMenuItem ele_menu = new JMenuItem(rotulo);
         if (menu.equalsIgnoreCase("fuente")) {
             this.fuente.add(ele_menu);
+            if (tipo_letra.equalsIgnoreCase("Aero")) {
+                ele_menu.addActionListener(new StyledEditorKit.FontFamilyAction("cambia_letra", "Aero"));
+            } else if (tipo_letra.equalsIgnoreCase("Serif")) {
+                ele_menu.addActionListener(new StyledEditorKit.FontFamilyAction("cambia_letra", "Serif"));
+            } else {
+                ele_menu.addActionListener(new StyledEditorKit.FontFamilyAction("cambia_letra", "Agency FB"));
+            }
         } else if (menu.equalsIgnoreCase("estilo")) {
             this.estilo.add(ele_menu);
+            if (estilo == Font.BOLD) {
+                ele_menu.addActionListener(new StyledEditorKit.BoldAction());
 
+            } else {
+                ele_menu.addActionListener(new StyledEditorKit.ItalicAction());
+            }
         } else {
             this.size.add(ele_menu);
+            ele_menu.addActionListener(new StyledEditorKit.FontSizeAction("", tam));
         }
-        ele_menu.addActionListener(new eventoTexto(rotulo, tipo_letra, estilo, tam));
 
     }
 
     //Clase que gestionara los eventos
-    private class eventoTexto implements ActionListener {
+   /* private class eventoTexto implements ActionListener {
 
-        private String tipo_texto, menu;
-        private int estilo_letra, tamagno;
+     private String tipo_texto, menu;
+     private int estilo_letra, tamagno;
 
-        public eventoTexto(String menu, String tipo_texto, int estilo_letra, int tamagno) {
-            this.tipo_texto = tipo_texto;
-            this.estilo_letra = estilo_letra;
-            this.tamagno = tamagno;
-            this.menu = menu;
-        }
+     public eventoTexto(String menu, String tipo_texto, int estilo_letra, int tamagno) {
+     this.tipo_texto = tipo_texto;
+     this.estilo_letra = estilo_letra;
+     this.tamagno = tamagno;
+     this.menu = menu;
+     }
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            letras = areaTexto.getFont();
-            if (menu.equalsIgnoreCase("Aero") || menu.equalsIgnoreCase("Serif") || menu.equalsIgnoreCase("Agency FB")) {
-                estilo_letra = letras.getStyle();
-                tamagno = letras.getSize();
-            } else if (menu.equalsIgnoreCase("Negrita") || menu.equalsIgnoreCase("Cursiva")) {
-                if(letras.getStyle()==1 || letras.getStyle()==2){
-                estilo_letra=3;
-                }
-                tipo_texto = letras.getFontName();
-                tamagno = letras.getSize();
-            } else if (menu.equalsIgnoreCase("12") || menu.equalsIgnoreCase("16") || menu.equalsIgnoreCase("20") || menu.equalsIgnoreCase("24")) {
-                tipo_texto = letras.getFontName();
-                estilo_letra = letras.getStyle();
-            }
-            texto.setText("Fuente: "+tipo_texto+" Estilo: "+estilo_letra+" Tamaño:"+tamagno);
-           // System.out.println("Fuente: "+tipo_texto+" Estilo: "+estilo_letra+" Tamaño:"+tamagno);
-            areaTexto.setFont(new Font(tipo_texto, estilo_letra, tamagno));
-        }
+     @Override
+     public void actionPerformed(ActionEvent e) {
+     letras = areaTexto.getFont();
+     if (menu.equalsIgnoreCase("Aero") || menu.equalsIgnoreCase("Serif") || menu.equalsIgnoreCase("Agency FB")) {
+     estilo_letra = letras.getStyle();
+     tamagno = letras.getSize();
+     } else if (menu.equalsIgnoreCase("Negrita") || menu.equalsIgnoreCase("Cursiva")) {
+     if(letras.getStyle()==1 || letras.getStyle()==2){
+     estilo_letra=3;
+     }
+     tipo_texto = letras.getFontName();
+     tamagno = letras.getSize();
+     } else if (menu.equalsIgnoreCase("12") || menu.equalsIgnoreCase("16") || menu.equalsIgnoreCase("20") || menu.equalsIgnoreCase("24")) {
+     tipo_texto = letras.getFontName();
+     estilo_letra = letras.getStyle();
+     }
+     texto.setText("Fuente: "+tipo_texto+" Estilo: "+estilo_letra+" Tamaño:"+tamagno);
+     // System.out.println("Fuente: "+tipo_texto+" Estilo: "+estilo_letra+" Tamaño:"+tamagno);
+     areaTexto.setFont(new Font(tipo_texto, estilo_letra, tamagno));
+     }
 
-    }
-
+     }*/
 }
