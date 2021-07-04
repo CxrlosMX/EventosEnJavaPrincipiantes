@@ -17,6 +17,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextPane;
@@ -80,6 +81,21 @@ public class Lamina extends JPanel {
         agregarRadioButton("16", 16);
         agregarRadioButton("20", 20);
         agregarRadioButton("24", 24);
+        
+        /*
+        Menu emergente
+        */
+        JPopupMenu emergente = new JPopupMenu();
+        //¿Como le agrego menus a mi ventana emergente?--Con JMenuItem
+        JMenuItem op1 = new JMenuItem("Negrita");
+        JMenuItem op2 = new JMenuItem("Cursiva");
+        //Gestion evento
+        op1.addActionListener(new StyledEditorKit.BoldAction());
+        op2.addActionListener(new StyledEditorKit.ItalicAction());
+        emergente.add(op1);
+        emergente.add(op2);
+        areaTexto.setComponentPopupMenu(emergente);
+        //----------------
         /* JRadioButtonMenuItem a = new JRadioButtonMenuItem("12");
          JRadioButtonMenuItem b = new JRadioButtonMenuItem("16");
          JRadioButtonMenuItem c = new JRadioButtonMenuItem("20");
