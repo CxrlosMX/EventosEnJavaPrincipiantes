@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package practia_II_ProcesadorTexto;
+package practia_III_ProcesadorTexto;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -49,6 +49,11 @@ public class Lamina extends JPanel {
     private JLabel texto;
     private ButtonGroup grupo;
 
+    //Creamos la variable para nustra barra de herramientas
+    private JToolBar barra;
+    //Creamos los botones
+   // private JButton negritaBarra, cursivaBarra, subraBarra, azulBarra, rojoBarra, amarilloBarra, a_izquierda, a_centrado, a_derecha, a_justificado;
+
     public Lamina() {
         setLayout(new BorderLayout());
         segundaLamina = new JPanel();
@@ -62,7 +67,7 @@ public class Lamina extends JPanel {
         fuente = new JMenu("Fuente");
         //------------------------------------------  
         areaTexto = new JTextPane();
-        
+
         //------------------------------------------
         configuraMenu("Aero", "fuente", "Aero", 9, 10);
         configuraMenu("Serif", "fuente", "Serif", 9, 10);
@@ -129,63 +134,87 @@ public class Lamina extends JPanel {
         add(areaTexto, BorderLayout.CENTER);
         //-------------------------------------
 
-        //Crearemos nuestra barra de herremientas
-        JToolBar barra = new JToolBar(1); //Utilizamos la sobre carga de constructores para darle una orientacion
-        //Para eso 0 es Horizontal y 1 vertizal, tambien para modificar la horientazion usamos el metodo 
-        //barra.setOrientation(WIDTH);
-        //Agregamos los botones que contendra nuestra barra
-        JButton boton1 = new JButton(new ImageIcon("src/copiar.gif"));
-        JButton boton2 = new JButton(new ImageIcon("src/pegar.gif"));
-        //Agregamos un tercer boton para subrayar el texto
-        JButton boton3 = new JButton("SubRayar");
-        //Hacemos que nuestros botones tengan una funcionalidad
-        boton1.addActionListener(new StyledEditorKit.BoldAction());
-        boton2.addActionListener(new StyledEditorKit.ItalicAction());
-        boton3.addActionListener(new StyledEditorKit.UnderlineAction());
-        //Agregamos nuestros botones a nuestra barra
-        barra.add(boton1);
-        barra.add(boton2);
-        barra.add(boton3);
+        /*--------------------------------------------------------------
+         //Crearemos nuestra barra de herremientas
+         JToolBar barra = new JToolBar(1); //Utilizamos la sobre carga de constructores para darle una orientacion
+         //Para eso 0 es Horizontal y 1 vertizal, tambien para modificar la horientazion usamos el metodo 
+         //barra.setOrientation(WIDTH);
+         //Agregamos los botones que contendra nuestra barra
+         JButton boton1 = new JButton(new ImageIcon("src/copiar.gif"));
+         JButton boton2 = new JButton(new ImageIcon("src/pegar.gif"));
+         //Agregamos un tercer boton para subrayar el texto
+         JButton boton3 = new JButton("SubRayar");
+         //Hacemos que nuestros botones tengan una funcionalidad
+         boton1.addActionListener(new StyledEditorKit.BoldAction());
+         boton2.addActionListener(new StyledEditorKit.ItalicAction());
+         boton3.addActionListener(new StyledEditorKit.UnderlineAction());
+         //Agregamos nuestros botones a nuestra barra
+         barra.add(boton1);
+         barra.add(boton2);
+         barra.add(boton3);
 
-        //Agregamos nuestra barra a nuestra lamina
-        add(barra, BorderLayout.WEST);
+         //Agregamos nuestra barra a nuestra lamina
+         add(barra, BorderLayout.WEST);
 
-        //--------------------
-        //Agregaremos Una barra para cambiar el color de la letra
-        JToolBar barra2 = new JToolBar(1);
-        //Agregamos los botones que iran dentro de nuestra barra
-        JButton rojo = new JButton("Rojo");
-        JButton verde = new JButton("Verde");
-        JButton negro = new JButton("Negro");
+         //--------------------
+         //Agregaremos Una barra para cambiar el color de la letra
+         JToolBar barra2 = new JToolBar(1);
+         //Agregamos los botones que iran dentro de nuestra barra
+         JButton rojo = new JButton("Rojo");
+         JButton verde = new JButton("Verde");
+         JButton negro = new JButton("Negro");
 
-        rojo.addActionListener(new StyledEditorKit.ForegroundAction("Rojo", Color.red));
-        verde.addActionListener(new StyledEditorKit.ForegroundAction("Verde", Color.GREEN));
-        negro.addActionListener(new StyledEditorKit.ForegroundAction("Negro", Color.BLACK));
-        barra2.add(rojo);
-        barra2.add(verde);
-        barra2.add(negro);
+         rojo.addActionListener(new StyledEditorKit.ForegroundAction("Rojo", Color.red));
+         verde.addActionListener(new StyledEditorKit.ForegroundAction("Verde", Color.GREEN));
+         negro.addActionListener(new StyledEditorKit.ForegroundAction("Negro", Color.BLACK));
+         barra2.add(rojo);
+         barra2.add(verde);
+         barra2.add(negro);
 
-        add(barra2, BorderLayout.EAST);
+         add(barra2, BorderLayout.EAST);
 
-        //----------
-        //Crearemos la barra de herramientas para aliniar el texto
-        JToolBar barra3 = new JToolBar(0);
-        //Agregamos los botones que iran dentro de nuestra barra
-        JButton izquierda = new JButton("<");
-        JButton centro = new JButton("||");
-        JButton derecha = new JButton(">");
+         //----------
+         //Crearemos la barra de herramientas para aliniar el texto
+         JToolBar barra3 = new JToolBar(0);
+         //Agregamos los botones que iran dentro de nuestra barra
+         JButton izquierda = new JButton("<");
+         JButton centro = new JButton("||");
+         JButton derecha = new JButton(">");
          JButton justificar = new JButton("=");
 
-        izquierda.addActionListener(new StyledEditorKit.AlignmentAction("Izquierda", StyleConstants.ALIGN_LEFT));
-        centro.addActionListener(new StyledEditorKit.AlignmentAction("Centro", StyleConstants.ALIGN_CENTER));
-        derecha.addActionListener(new StyledEditorKit.AlignmentAction("Derecha", StyleConstants.ALIGN_RIGHT));
-        justificar.addActionListener(new StyledEditorKit.AlignmentAction("Justificacion", StyleConstants.ALIGN_JUSTIFIED));
+         izquierda.addActionListener(new StyledEditorKit.AlignmentAction("Izquierda", StyleConstants.ALIGN_LEFT));
+         centro.addActionListener(new StyledEditorKit.AlignmentAction("Centro", StyleConstants.ALIGN_CENTER));
+         derecha.addActionListener(new StyledEditorKit.AlignmentAction("Derecha", StyleConstants.ALIGN_RIGHT));
+         justificar.addActionListener(new StyledEditorKit.AlignmentAction("Justificacion", StyleConstants.ALIGN_JUSTIFIED));
         
-        barra3.add(izquierda);
-        barra3.add(centro);
-        barra3.add(derecha);
-        barra3.add(justificar);
-        add(barra3, BorderLayout.SOUTH);
+         barra3.add(izquierda);
+         barra3.add(centro);
+         barra3.add(derecha);
+         barra3.add(justificar);
+         add(barra3, BorderLayout.SOUTH);*/
+        //-------------------------------------------
+        //Optimizando codigo
+        barra = new JToolBar(1);
+        configuraBarra("src/negrita.png").addActionListener(new StyledEditorKit.BoldAction());
+        configuraBarra("src/cursiva.png").addActionListener(new StyledEditorKit.ItalicAction());
+        configuraBarra("src/subrayado.png").addActionListener(new StyledEditorKit.UnderlineAction());
+        barra.addSeparator(); //Separador
+        configuraBarra("src/izquierda.png").addActionListener(new StyledEditorKit.AlignmentAction("Izquierda", StyleConstants.ALIGN_LEFT));
+        configuraBarra("src/centro.png").addActionListener(new StyledEditorKit.AlignmentAction("Centro", StyleConstants.ALIGN_CENTER));
+        configuraBarra("src/derecha.png").addActionListener(new StyledEditorKit.AlignmentAction("Derecha", StyleConstants.ALIGN_RIGHT));
+        barra.addSeparator(); //Separador
+        configuraBarra("src/azul.png").addActionListener(new StyledEditorKit.ForegroundAction("Azul", Color.BLUE));
+        configuraBarra("src/rojo.png").addActionListener(new StyledEditorKit.ForegroundAction("Rojo", Color.red));
+        configuraBarra("src/amarillo.png").addActionListener(new StyledEditorKit.ForegroundAction("Amarillo", Color.yellow));
+
+        add(barra, BorderLayout.WEST);
+    }
+
+    //Metodo para agregar los botones a la barra
+    public JButton configuraBarra(String ruta) {
+        JButton boton = new JButton(new ImageIcon(ruta));
+        barra.add(boton);
+        return boton;
     }
 
     private void agregarRadioButton(String texto, int tama) {
