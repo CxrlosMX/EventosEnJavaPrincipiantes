@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DisposicionesAvanzadas_Muelle;
+package DisposicionesAvanzadas_Libre;
 
 import java.awt.Color;
 import javax.swing.JFrame;
@@ -14,18 +14,18 @@ import javax.swing.JFrame;
  * @Git-Hub: https://github.com/CxrlosMX
  * @Phone: 953-212-97-27
  * @Email: LuisCRendon131@gmail.com
- * @Date: 12/07/2021
+ * @Date: 14/07/2021
  *
  */
 public class Marco extends JFrame {
 
     public Marco() {
         setVisible(true);
-        setTitle("Disposicion MUELLE");
-        setSize(500, 500);
-        setLocation(400, 150);
+        setSize(500,500);
+        setLocation(400,150);
+        setTitle("Disposiciones Avanzadas Libres");
         Lamina lamina=new Lamina();
-            lamina.setBackground(new Color(23, 56, 78));
-                add(lamina);
+        //lamina.setBackground(new Color(23,56, 78));
+        add(lamina);
     }
 }
