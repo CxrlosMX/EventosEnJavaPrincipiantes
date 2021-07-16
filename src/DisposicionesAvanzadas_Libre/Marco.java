@@ -22,6 +22,8 @@ public class Marco extends JFrame{
         setVisible(true);
         setSize(500,500);
         setLocation(400, 150);
+        Lamina lamina=new Lamina();
+        add(lamina);
     }
 
 }
