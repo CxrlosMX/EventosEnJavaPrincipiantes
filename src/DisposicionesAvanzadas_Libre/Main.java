@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DisposicionesAvanzadas_Libre;
 
 import javax.swing.JFrame;
@@ -15,12 +14,13 @@ import javax.swing.JFrame;
  * @Phone: 953-212-97-27
  * @Email: LuisCRendon131@gmail.com
  * @Date: 15/07/2021
- * 
+ *
  */
 public class Main {
+
     public static void main(String[] args) {
-        Marco marco=new Marco();
+        Marco marco = new Marco();
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
+    
 }
