@@ -23,4 +23,4 @@ public class Marco {
         marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-}
+} 
