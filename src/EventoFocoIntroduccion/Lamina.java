@@ -68,11 +68,11 @@ public class Lamina extends JPanel {
             //ruta de nuestra imagen
             //imagen=ImageIO.read(new File("Ruta"));
             imagen = ImageIO.read(miImagen);
-        } catch (IOException ex) {
+        } catch (IOException ex) { 
             System.out.println("La imagen no ha podido encontrarse " + ex.getMessage());
         }
         g.drawImage(imagen, 180, 50, null);
-
+        
         setLayout(null);
         cuadro1 = new JTextField();
         cuadro2 = new JTextField();
